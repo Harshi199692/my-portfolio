@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KopiHouse — Project Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f8f6f2;
+    color: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+  }
+
+  header {
+    padding: 60px 40px 40px;
+    max-width: 860px;
+    margin: 0 auto;
+    border-bottom: 1px solid #e0dbd2;
+    margin-bottom: 50px;
+  }
+
+  .project-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #b07d3a;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: #111;
+  }
+
+  header h1 em {
+    font-style: italic;
+    color: #b07d3a;
+  }
+
+  header p {
+    color: #666;
+    line-height: 1.7;
+    max-width: 580px;
+    font-weight: 300;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .tag {
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #555;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .gallery {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .item-img {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: zoom-in;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .item-img img {
+    width: 100%;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .item-img:hover img { transform: scale(1.02); }
+
+  .item-number {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+  }
+
+  .item-info { padding: 18px 4px 0; }
+
+  .item-section {
+    font-size: 10.5px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #b07d3a;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .item-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #111;
+  }
+
+  .item-info p {
+    color: #666;
+    line-height: 1.75;
+    font-weight: 300;
+    font-size: 14px;
+  }
+
+  /* structure bullets */
+  .structure-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .structure-list li {
+    list-style: none;
+    font-size: 13px;
+    color: #555;
+    font-weight: 400;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .structure-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #b07d3a;
+    font-size: 11px;
+    top: 1px;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #e5e0d8;
+    margin-top: 50px;
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    cursor: zoom-out;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 1100px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    animation: pop 0.25s ease;
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .lb-close {
+    position: fixed;
+    top: 20px; right: 20px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .lb-close:hover { background: rgba(255,255,255,0.3); }
+
+  @media (max-width: 600px) {
+    header, .gallery { padding-left: 20px; padding-right: 20px; }
+    header h1 { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <!-- <div class="project-label">Portfolio Project</div> -->
+  <h1>KopiHouse — <em>Website Design</em></h1>
+  <p>A single-page responsive website built for a local café brand. Designed with a warm dark theme, smooth navigation, and conversion-focused layout. Each section was structured to guide the user naturally from discovery to action.</p>
+  <div class="tags">
+    <!-- <span class="tag">Web Design</span> -->
+    <span class="tag">UI/UX</span>
+    <span class="tag">HTML / CSS / JS</span>
+    <span class="tag">Responsive</span>
+    <span class="tag">Single Page</span>
+  </div>
+</header>
+
+<div class="gallery">
+
+  <!-- 01 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox('Capture_1.PNG')">
+      <span class="item-number">01</span>
+      <img src="images/Capture 1.PNG" alt="Hero Section">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Section 01</div>
+      <h2>Hero / Landing Section</h2>
+      <p>The top section of the page designed to immediately capture attention and set the brand mood.</p>
+      <ul class="structure-list">
+        <li>Fixed navigation bar with logo, nav links, and a highlighted CTA button on the right</li>
+        <li>Full-viewport background image with a dark overlay for text contrast</li>
+        <li>Large display heading using mixed font weights and italic style for emphasis</li>
+        <li>Short supporting tagline below the heading</li>
+        <li>Two side-by-side action buttons — primary (solid) and secondary (outline)</li>
+        <li>Animated scroll indicator at the bottom center</li>
+        <li>Floating WhatsApp icon fixed to the bottom-right corner</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 02 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox('Capture_2.PNG')">
+      <span class="item-number">02</span>
+      <img src="images/Capture 2.PNG" alt="About Section">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Section 02</div>
+      <h2>About / Brand Story Section</h2>
+      <p>A two-column layout used to introduce the brand with imagery and text side by side.</p>
+      <ul class="structure-list">
+        <li>Left column: large primary image with a smaller overlapping secondary image (stacked/floating effect)</li>
+        <li>Right column: section heading, two paragraphs of body text, and feature highlights</li>
+        <li>Feature highlights structured as icon + bold label + short description rows</li>
+        <li>CTA button placed at the bottom of the text column</li>
+        <li>Light background to contrast with the dark hero above</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 03 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox('Capture_3.PNG')">
+      <span class="item-number">03</span>
+      <img src="images/Capture 3.PNG" alt="Menu Section">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Section 03</div>
+      <h2>Menu / Product Grid Section</h2>
+      <p>A filterable product grid that lets users browse items by category without leaving the page.</p>
+      <ul class="structure-list">
+        <li>Section heading and subheading centred at the top</li>
+        <li>Filter tab bar with category buttons (All, Hot, Cold, Food, Specials)</li>
+        <li>Responsive 4-column card grid — each card has an image, badge label, title, description, price, and order button</li>
+        <li>Distinct badge styles to highlight popular or new items</li>
+        <li>Dark background to visually separate this section from others</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 04 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox('Capture_4.PNG')">
+      <span class="item-number">04</span>
+      <img src="images/Capture 4.PNG" alt="Gallery Section">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Section 04</div>
+      <h2>Gallery / Image Grid Section</h2>
+      <p>A visual-only section using an asymmetric grid to display atmosphere and lifestyle photography.</p>
+      <ul class="structure-list">
+        <li>Centred section label and heading</li>
+        <li>Two-row asymmetric image grid — top row has one wide image and two smaller ones, bottom row has three equal columns</li>
+        <li>All images use consistent border-radius for a cohesive look</li>
+        <li>Light cream background to let the images breathe</li>
+        <li>No text inside the grid — purely visual storytelling</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 05 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox('Capture_5.PNG')">
+      <span class="item-number">05</span>
+      <img src="images/Capture 5.PNG" alt="Promotions Section">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Section 05</div>
+      <h2>Promotional / Offer Banner Section</h2>
+      <p>A high-conversion promotional section designed to highlight a time-limited deal and push users to act.</p>
+      <ul class="structure-list">
+        <li>Two-column layout — left: offer text and CTA, right: product image</li>
+        <li>Small label tag at the top to mark it as a limited-time offer</li>
+        <li>Large bold heading with mixed font styling for emphasis</li>
+        <li>Live countdown timer displayed as three separate boxes (Hours / Mins / Secs)</li>
+        <li>Single prominent CTA button linked to WhatsApp</li>
+        <li>Dark background for strong contrast and urgency</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 06 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox('Capture_6.PNG')">
+      <span class="item-number">06</span>
+      <img src="images/Capture 6.PNG" alt="Contact Section">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Section 06</div>
+      <h2>Contact / Location Section</h2>
+      <p>An information-focused section that gives users everything they need to visit or get in touch.</p>
+      <ul class="structure-list">
+        <li>Two-column card layout — left card: contact details, right card: map/directions</li>
+        <li>Contact card uses icon + label + value rows for Location, Hours, Phone, and Email</li>
+        <li>Social media icon row at the bottom of the contact card</li>
+        <li>Right card styled as a dark panel with a location pin icon, address, and Get Directions button</li>
+        <li>Light page background to keep the section clean and readable</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 07 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox('Capture_7.PNG')">
+      <span class="item-number">07</span>
+      <img src="images/Capture 7.PNG" alt="Newsletter and Footer">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Section 07</div>
+      <h2>Newsletter & Footer</h2>
+      <p>The closing section of the page — a newsletter signup banner followed by a structured footer.</p>
+      <ul class="structure-list">
+        <li>Newsletter banner: centred heading, subtext, inline email input + submit button, and a privacy note below</li>
+        <li>Contrasting background color (sage green) to visually separate this from the footer</li>
+        <li>Footer divided into 4 columns — logo/description, navigation links, menu links, and contact info</li>
+        <li>Social media icons row under the logo column</li>
+        <li>Bottom bar with copyright text on the left and policy links on the right</li>
+        <li>Dark background footer for strong page closure</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close">✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+  function openLightbox(src) {
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
