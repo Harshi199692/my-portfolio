@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UOVT Library — Project Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f8f6f2;
+    color: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+  }
+
+  header {
+    padding: 60px 40px 40px;
+    max-width: 860px;
+    margin: 0 auto;
+    border-bottom: 1px solid #e0dbd2;
+    margin-bottom: 50px;
+  }
+
+  .project-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #b07d3a;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: #111;
+  }
+
+  header h1 em {
+    font-style: italic;
+    color: #b07d3a;
+  }
+
+  header p {
+    color: #666;
+    line-height: 1.7;
+    max-width: 580px;
+    font-weight: 300;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .tag {
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #555;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .gallery {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .item-img {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: zoom-in;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .item-img img {
+    width: 100%;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .item-img:hover img { transform: scale(1.02); }
+
+  .item-number {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+  }
+
+  .item-info { padding: 18px 4px 0; }
+
+  .item-section {
+    font-size: 10.5px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #b07d3a;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .item-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #111;
+  }
+
+  .item-info p {
+    color: #666;
+    line-height: 1.75;
+    font-weight: 300;
+    font-size: 14px;
+  }
+
+  .structure-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .structure-list li {
+    list-style: none;
+    font-size: 13px;
+    color: #555;
+    font-weight: 400;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .structure-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #b07d3a;
+    font-size: 11px;
+    top: 1px;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #e5e0d8;
+    margin-top: 50px;
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    cursor: zoom-out;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 1100px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    animation: pop 0.25s ease;
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .lb-close {
+    position: fixed;
+    top: 20px; right: 20px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .lb-close:hover { background: rgba(255,255,255,0.3); }
+
+  @media (max-width: 600px) {
+    header, .gallery { padding-left: 20px; padding-right: 20px; }
+    header h1 { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <!-- <div class="project-label">Portfolio Project</div> -->
+  <h1>UOVT Library — <em>Management System</em></h1>
+  <p>A full-featured web-based library management system built for the University of Vocational Technology. Designed with a warm academic theme, intuitive navigation, and an efficient workflow layout. Each screen was structured to help library staff manage books, members, circulation, and analytics with ease.</p>
+  <div class="tags">
+    <span class="tag">UI/UX</span>
+    <span class="tag">HTML / CSS / JS</span>
+    <span class="tag">Dashboard Design</span>
+    <!-- <span class="tag">Web App</span>
+    <span class="tag">Library System</span> -->
+  </div>
+</header>
+
+<div class="gallery">
+
+  <!-- 01 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox(this)">
+      <span class="item-number">01</span>
+      <img src="images/C1.PNG" alt="Staff Login">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Screen 01</div>
+      <h2>Staff Login Page</h2>
+      <p>The entry point of the system, designed to convey institutional authority while keeping the login process simple and secure.</p>
+      <ul class="structure-list">
+        <li>Centred university logo with institution name and system title above the login card</li>
+        <li>Dark, textured background using a subtle grid pattern for depth</li>
+        <li>Clean white login card with a warm gold top-border accent</li>
+        <li>Username and password fields with inline icons and visible focus states</li>
+        <li>"Keep me signed in" checkbox for returning users</li>
+        <li>Full-width dark Sign In button with arrow indicator</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 02 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox(this)">
+      <span class="item-number">02</span>
+      <img src="images/C2.PNG" alt="Dashboard">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Screen 02</div>
+      <h2>Dashboard — Overview</h2>
+      <p>The main hub of the system giving staff an instant snapshot of library activity, with quick-action tools built right into the view.</p>
+      <ul class="structure-list">
+        <li>Left sidebar with grouped navigation: Overview, Catalog, Circulation, Members, and Analytics</li>
+        <li>Four summary stat cards at the top — Total Books, Available, Borrowed, and Members</li>
+        <li>Recent Activity feed showing time-stamped logs of borrows, returns, and registrations</li>
+        <li>Quick Issue panel on the right — member selector, book selector, and due date picker in one action</li>
+        <li>Overdue Summary widget showing count and daily fine rate at a glance</li>
+        <li>Logged-in admin name and Sign Out link anchored to the sidebar bottom</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 03 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox(this)">
+      <span class="item-number">03</span>
+      <img src="images/C3.PNG" alt="Books & Resources">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Screen 03</div>
+      <h2>Books & Resources Catalog</h2>
+      <p>A comprehensive and filterable book catalog allowing staff to view, search, and manage the entire library inventory in one place.</p>
+      <ul class="structure-list">
+        <li>Filter tabs at the top — All, Available, Partially Borrowed, Unavailable</li>
+        <li>Book count indicator and a text filter input on the same row</li>
+        <li>Table layout with columns for Title & Author, ISBN, Category, Copies, Status, and Actions</li>
+        <li>Colour-coded status badges — Available (neutral), All Out (red-outlined)</li>
+        <li>Per-row action buttons: View and Issue — Issue button disabled when unavailable</li>
+        <li>+ Add Book button in the top-right corner for quick catalog entry</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 04 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox(this)">
+      <span class="item-number">04</span>
+      <img src="images/C4.PNG" alt="Add New Book">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Screen 04</div>
+      <h2>Add New Book Form</h2>
+      <p>A clean, structured data entry form for adding new titles to the library catalog with all necessary metadata fields.</p>
+      <ul class="structure-list">
+        <li>Two-column layout for related fields — Author + ISBN, Publisher + Publication Year, Category + Number of Copies</li>
+        <li>Full-width Title field at the top as the primary required input</li>
+        <li>Category dropdown pre-populated with library classification options</li>
+        <li>Shelf Location field for physical placement reference</li>
+        <li>Description textarea for synopsis or librarian notes</li>
+        <li>Add to Catalog and Clear buttons at the bottom for quick form control</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 05 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox(this)">
+      <span class="item-number">05</span>
+      <img src="images/C5.PNG" alt="Issue Book">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Screen 05</div>
+      <h2>Issue Book — Circulation</h2>
+      <p>The book issuing interface, designed for fast staff workflow with real-time visibility of all currently active borrows.</p>
+      <ul class="structure-list">
+        <li>Left panel: Issue a Book form with Member, Book, Issue Date, Due Date, and Notes fields</li>
+        <li>Member and Book dropdowns show ID codes and availability count inline</li>
+        <li>Issue Date auto-populated; Due Date editable via date picker</li>
+        <li>Gold-coloured Issue Book submit button for clear call-to-action emphasis</li>
+        <li>Right panel: Currently Issued table with Member, Book, Due Date, and Status columns</li>
+        <li>Status badges colour-coded — Active (gold), Overdue (red) for quick identification</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 06 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox(this)">
+      <span class="item-number">06</span>
+      <img src="images/C6.PNG" alt="Returns & Fines">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Screen 06</div>
+      <h2>Returns & Fines</h2>
+      <p>A dedicated screen for managing book returns and tracking outstanding fines, with overdue alerts prominently surfaced.</p>
+      <ul class="structure-list">
+        <li>Alert banners at the top listing each overdue borrow with borrower name, due date, and calculated fine</li>
+        <li>Process a Return search panel — accepts Transaction ID, Member ID, or member name</li>
+        <li>Return History table on the right showing completed returns with date and fine paid</li>
+        <li>Fine amounts displayed as badge-style tags in warm orange for overdue entries</li>
+        <li>Clean two-column layout balancing the action form with the history log</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 07 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox(this)">
+      <span class="item-number">07</span>
+      <img src="images/C7.PNG" alt="Members">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Screen 07</div>
+      <h2>Members Directory</h2>
+      <p>A searchable and filterable directory of all registered library members shown as profile cards for quick identification.</p>
+      <ul class="structure-list">
+        <li>Search bar at the top left for filtering by name, email, or member ID</li>
+        <li>Filter tabs — All, Students, Faculty, Staff — to segment the member list</li>
+        <li>Two-column card grid layout — each card shows avatar initials, full name, department, member type badge, member ID, and borrow count</li>
+        <li>Member type badges colour-coded — student (dark), staff (gold outline) for quick visual distinction</li>
+        <li>+ Register button in the top-right for adding new members</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 08 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox(this)">
+      <span class="item-number">08</span>
+      <img src="images/C8.PNG" alt="Register Member">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Screen 08</div>
+      <h2>Register New Member</h2>
+      <p>A straightforward registration form for onboarding new library members with their personal and institutional details.</p>
+      <ul class="structure-list">
+        <li>Two-column layout for paired fields — First Name + Last Name, Email + Phone, Member Type + Department</li>
+        <li>Member Type dropdown with options including Student, Faculty, and Staff</li>
+        <li>Full-width Address field spanning the form width</li>
+        <li>Required fields marked with asterisks for clear data validation guidance</li>
+        <li>Register Member (dark primary) and Clear (ghost) buttons at the bottom</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- 09 -->
+  <div class="item">
+    <div class="item-img" onclick="openLightbox(this)">
+      <span class="item-number">09</span>
+      <img src="images/C9.PNG" alt="Reports & Analytics">
+    </div>
+    <div class="item-info">
+      <div class="item-section">Screen 09</div>
+      <h2>Reports & Analytics</h2>
+      <p>An analytics dashboard giving library administrators a data-driven overview of circulation, fines, and collection usage.</p>
+      <ul class="structure-list">
+        <li>Tab navigation at the top — Overview, Circulation, Fines, Popular Books</li>
+        <li>Four summary stat cards — Total Transactions, Active Borrows, Fines Collected, Overdue count</li>
+        <li>Books by Category horizontal bar chart showing copies vs. availability for each subject area</li>
+        <li>Category labels and copy counts displayed inline for instant data readability</li>
+        <li>Gold-coloured bars with a muted background for clear visual contrast</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+  function openLightbox(el) {
+    const img = el.querySelector('img');
+    document.getElementById('lb-img').src = img.src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>

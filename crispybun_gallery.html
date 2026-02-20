@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Crispy Bun — Brand Identity</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #FFF3E8;
+    color: #1A1A1A;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+  }
+
+  header {
+    padding: 60px 40px 50px;
+    max-width: 960px;
+    margin: 0 auto;
+    border-bottom: 1px solid #f0d9c4;
+    margin-bottom: 60px;
+  }
+
+  .project-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #E10600;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: #1A1A1A;
+  }
+
+  header h1 em {
+    font-style: italic;
+    color: #FF6A00;
+  }
+
+  .brand-overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 36px;
+  }
+
+  .brand-overview p {
+    color: #555;
+    line-height: 1.8;
+    font-weight: 300;
+    font-size: 14px;
+  }
+
+  .brand-pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .pillar {
+    border-radius: 8px;
+    padding: 16px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .pillar .emoji { font-size: 18px; display: block; margin-bottom: 8px; }
+  .pillar.red    { background: #E10600; color: #FFF3E8; }
+  .pillar.orange { background: #FF6A00; color: #FFF3E8; }
+  .pillar.cream  { background: #fff; color: #1A1A1A; border: 1px solid #e8cdb5; }
+  .pillar.dark   { background: #1A1A1A; color: #FF6A00; }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    background: #fff;
+    border: 1px solid #e8cdb5;
+    color: #555;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* GALLERY GRID */
+  .gallery {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .gallery .full-width {
+    grid-column: 1 / -1;
+  }
+
+  .img-wrap {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: zoom-in;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  .img-wrap img {
+    width: 100%;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .img-wrap:hover img { transform: scale(1.02); }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    cursor: zoom-out;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 1100px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    animation: pop 0.25s ease;
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .lb-close {
+    position: fixed;
+    top: 20px; right: 20px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .lb-close:hover { background: rgba(255,255,255,0.3); }
+
+  @media (max-width: 640px) {
+    header { padding: 40px 20px; }
+    .brand-overview { grid-template-columns: 1fr; gap: 20px; }
+    .brand-pillars { grid-template-columns: 1fr 1fr; }
+    .gallery { padding: 0 20px 60px; grid-template-columns: 1fr; }
+    .gallery .full-width { grid-column: 1; }
+    header h1 { font-size: 1.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="project-label">Brand Identity — Rebrand Project</div>
+  <h1>The Crispy Bun</h1>
+
+  <div class="brand-overview">
+    <p>The Crispy Bun doesn't whisper. Bold, addictive, and relentlessly hot — this brand is built on crunch, heat, and pure craveable comfort. Not gourmet. Not minimal. Not rustic. Loud but never chaotic, confident but always slightly cheeky. It earns attention without begging for it.</p>
+    <p>The color system carries that same intensity. Hot Red brings the heat — raw, urgent, appetite-igniting. Burnt Orange adds warmth and texture, the visual equivalent of something golden and perfectly fried. Together, they don't suggest flavor. They <em>are</em> flavor.</p>
+  </div>
+
+  <div class="brand-pillars">
+    <div class="pillar red"><span class="emoji">🔥</span>Bold & Loud</div>
+    <div class="pillar orange"><span class="emoji">⚡</span>High Energy</div>
+    <div class="pillar cream"><span class="emoji">💥</span>Crunch-Driven</div>
+    <div class="pillar dark"><span class="emoji">🍔</span>Flavor-First</div>
+  </div>
+
+  <div class="tags">
+    <span class="tag">Brand Identity</span>
+    <span class="tag">Color System</span>
+    <span class="tag">Packaging</span>
+    <span class="tag">Environmental Design</span>
+    <span class="tag">OOH Advertising</span>
+  </div>
+</header>
+
+<!-- GALLERY -->
+<div class="gallery">
+
+  <!-- Full-width hero -->
+  <div class="img-wrap full-width" onclick="openLightbox(this)">
+    <img src="images/1.jpg" alt="Brand Tagline">
+  </div>
+
+  <!-- Color system -->
+  <div class="img-wrap" onclick="openLightbox(this)">
+    <img src="images/1 copy.jpg" alt="Color Palette">
+  </div>
+
+  <!-- Wordmark -->
+  <div class="img-wrap" onclick="openLightbox(this)">
+    <img src="images/1 copy 16.jpg" alt="Wordmark">
+  </div>
+
+  <!-- Campaign woman -->
+  <div class="img-wrap" onclick="openLightbox(this)">
+    <img src="images/1 copy 2.jpg" alt="Campaign - Woman">
+  </div>
+
+  <!-- Campaign man -->
+  <div class="img-wrap" onclick="openLightbox(this)">
+    <img src="images/1 copy 4.jpg" alt="Campaign - Man">
+  </div>
+
+  <!-- Hero burger full width -->
+  <div class="img-wrap full-width" onclick="openLightbox(this)">
+    <img src="images/1 copy 15.jpg" alt="Hero Burger">
+  </div>
+
+  <!-- Burger box packaging -->
+  <div class="img-wrap" onclick="openLightbox(this)">
+    <img src="images/1 copy 3.jpg" alt="Burger Box">
+  </div>
+
+  <!-- Burger wrap packaging -->
+  <div class="img-wrap" onclick="openLightbox(this)">
+    <img src="images/1 copy 5.jpg" alt="Burger Wrap">
+  </div>
+
+  <!-- Tray + sauces -->
+  <div class="img-wrap" onclick="openLightbox(this)">
+    <img src="images/1 copy 8.jpg" alt="Tray & Sauces">
+  </div>
+
+  <!-- Staff uniform -->
+  <div class="img-wrap" onclick="openLightbox(this)">
+    <img src="images/1 copy 7.jpg" alt="Staff Uniform">
+  </div>
+
+  <!-- T-shirt merch -->
+  <div class="img-wrap" onclick="openLightbox(this)">
+    <img src="images/1 copy 9.jpg" alt="T-Shirt">
+  </div>
+
+  <!-- Tote bag -->
+  <div class="img-wrap" onclick="openLightbox(this)">
+    <img src="images/1 copy 6.jpg" alt="Tote Bag">
+  </div>
+
+  <!-- Cap -->
+  <div class="img-wrap" onclick="openLightbox(this)">
+    <img src="images/1 copy 12.jpg" alt="Cap">
+  </div>
+
+  <!-- Collateral flatlay -->
+  <div class="img-wrap" onclick="openLightbox(this)">
+    <img src="images/1 copy 13.jpg" alt="Merch Suite">
+  </div>
+
+  <!-- Menu boards full width -->
+  <div class="img-wrap full-width" onclick="openLightbox(this)">
+    <img src="images/1 copy 10.jpg" alt="Digital Menu Boards">
+  </div>
+
+  <!-- Crunch combo display -->
+  <div class="img-wrap" onclick="openLightbox(this)">
+    <img src="images/1 copy 14.jpg" alt="Crunch Combo Display">
+  </div>
+
+  <!-- Billboard full width -->
+  <div class="img-wrap full-width" onclick="openLightbox(this)">
+    <img src="images/Artboard 1.jpg" alt="OOH Billboard">
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+  function openLightbox(el) {
+    const img = el.querySelector('img');
+    document.getElementById('lb-img').src = img.src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
